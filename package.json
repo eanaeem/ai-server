@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./app/index.js --exec babel-node"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "cryptr": "^2.0.0",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "helmet": "^3.9.0",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.5",
+    "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2017": "^6.24.1",
+    "copyfiles": "^1.2.0",
+    "eslint": "^4.11.0",
+    "eslint-config-es": "^0.8.12",
+    "eslint-plugin-extended": "^0.2.0",
+    "nodemon": "^1.12.1",
+    "rimraf": "^2.6.2"
+  }
+}
