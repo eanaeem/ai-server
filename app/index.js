@@ -2,12 +2,23 @@ import express from 'express';
 import mongoose from 'mongoose';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import cors from 'cors';
+import morgan from 'morgan';
 import passport from 'passport';
+
 
 import routes from './controller';
 
 const app = express();
 app.use(passport.initialize());
+// app.use (morgan('combined'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors({
+	origin: "http://localhost:3000",
+	// Credentials: true,
+	// optionsSuccessStatus: 200
+
+}));
 
 // app.use(logger());
 
@@ -18,7 +29,7 @@ app.use(passport.initialize());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', routes)
+app.use('/api', routes);
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));
 
