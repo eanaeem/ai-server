@@ -13,6 +13,7 @@
     "cryptr": "^2.0.0",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "fast-csv": "^2.4.1",
     "helmet": "^3.9.0",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.1.0",

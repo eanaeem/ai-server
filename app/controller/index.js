@@ -1,27 +1,25 @@
 import express from 'express';
+import multer from 'multer';
+
 import Users from './users';
 import Login from './login'
-
-import multer from 'multer';
-// const upload = multer();
 import FileUpload from './fileUpload';
 
 import User from '../models/userModel'
 
 let router = express.Router();
-
-const storage = multer.diskStorage({
-	destination: './files',
-	filename(req, file, cb) {
-	  cb(null, `${file.originalname}`);
-	},
- });
+// const storage = multer.diskStorage({
+// 	destination: './files',
+// 	filename(req, file, cb) {
+// 	  cb(null, `${file.originalname}`);
+// 	},
+//  });
  
- const upload = multer({ storage });
+//  const upload = multer({ storage });
+ const upload = multer();
 
 
 router.get('/test', (req,res)=>{
-	debugger;	
 	res.send('test data for server ** ');
 });
 
