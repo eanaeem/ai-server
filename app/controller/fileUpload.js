@@ -5,14 +5,22 @@ import stream, { Readable , Duplex} from 'stream';
 const FileUpload = (req, res) => {
 	debugger;
 	console.log('req body****', req.body);
-	// console.log('req.filebuffer**',req.file.buffer);
+	console.log('req.filebuffer**',req.file);
 	// let fileStream = new Readable();
 	// console.log('readable steram****', fileStream);
 
 	// fileStream.push(req.file.buffer);
 	csv
-	.fromString(req.file.buffer.toString(), { headers: true})
-		.on("data", function (data) {
+		.fromString(req.file.buffer.toString(), { headers: true})
+		.transform((data)=>{
+			// const {Date, 'Money In': MoneyIn} = data;
+			const {Type, Tags} = data;
+			return {
+				Type,
+				Tags
+			};
+  		})
+		.on("data",  (data)=> {
 			console.log('****', data);
 	});
 

@@ -5,14 +5,14 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 import passport from 'passport';
-
-
 import routes from './controller';
+import Config from './config/index';
+
 
 const app = express();
 app.use(passport.initialize());
 // app.use (morgan('combined'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
 	origin: "http://localhost:3000",
 	// Credentials: true,
@@ -22,16 +22,22 @@ app.use(cors({
 
 // app.use(logger());
 
-// mongoose.connect('mongodb://sham:mitcham1@aws-eu-west-1-portal.10.dblayer.com:18000/ena?ssl=true', (err) => {
-// 	if (err) console.log('***not connected to db****');
-// 	else console.log('****connected to db****');
-// });
+
+
+let { db, port  } = Config;
+port = process.env.PORT || port;
+
+if (process.env.ENV == 'Test') {
+	mongoose.connect(db);
+} else {
+	mongoose.connect(db);
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', routes);
 
-app.listen(3001, () => console.log('Example app listening on port 3001!'));
+app.listen(port , () => console.log(`Example app listening on port ${port}`));
 
 
 
