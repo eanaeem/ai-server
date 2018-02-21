@@ -13,7 +13,6 @@ export const handleAxiosError = (error) => {
 
 
 const Shopify = (req, res) => {
-	console.log('hello shopify controller');
 	const accessTokenRequestUrl = `https://shami-ai.myshopify.com/admin/oauth/access_token`;
 	const accessTokenPayload = {
 	  client_id: "2312d2eba17dd594fb40ba8734ed10e0",
@@ -31,19 +30,18 @@ const Shopify = (req, res) => {
 	// 	res.send(error);
 	// });
 
-	const baseURL = 'https://shami-ai.myshopify.com/admin/products.json';
+	const shopRequestUrl = 'https://shami-ai.myshopify.com/admin/products.json';
 	const shopRequestHeaders = {
 	  'X-Shopify-Access-Token': 'da8f78abf6fe6502b8bd0b244016c74b',
 	};
 
-	axios({baseURL, headers: shopRequestHeaders})
+	axios({baseURL:shopRequestUrl, headers: shopRequestHeaders})
 	.then((shopResponse) => {
-		console.log('response promise*******', shopResponse.data);
-		res.send(shopResponse.data)
+		res.write(shopResponse.status)
+		res.write(shopResponse.data)
+		setTimeout(()=>res.send(shopResponse.data),3000);
 	})
-	// .then(data=>res.send(data))
 	.catch((error) => {
-		console.log('error promise*******', error);
 		handleAxiosError(error);
 	  res.status(error.statusCode).send(error.error.error_description);
 	});
