@@ -1,5 +1,5 @@
 const Config = {
-	db: 'mongodb://localhost/ai',
+	db: 'mongodb://localhost/cas',
 	port: 3001
 };
 
