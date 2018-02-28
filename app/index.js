@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
 
-// import routes from './controller';
+import routes from './controller';
 import Config from './config/index';
 
 
@@ -28,22 +28,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 app.use(logger());
 
-app.get('/test', (req,res)=>{
-	console.log('test request');
-	res.send('test path return data');
-});
 
 
 let { db, port, remoteDb } = Config;
 port = process.env.PORT || port;
 
-// mongoose.connect(remoteDb, { useMongoClient: true }, (err) => {
-// 	if (err) console.log('*** Error connecting to db****');
-// 	else console.log('****connected to db****');
-// });
+mongoose.connect(remoteDb, { useMongoClient: true }, (err) => {
+	if (err) console.log('*** Error connecting to db****');
+	else console.log('****connected to db****');
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('/api', routes);
+app.use('/api', routes);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
