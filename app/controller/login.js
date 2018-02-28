@@ -7,10 +7,13 @@ let JwtStrategy = passportJWT.Strategy;
 
 
 const Login = (req, res) => {
-	const { name, username, password } = req.body;
-	var token = jwt.sign(username, 'hello123');
+	console.log('req.body', req.body);
+	console.log('req.session**', req.session);
+	const { email, password, username } = req.body;
+	var token = jwt.sign(email, 'hello123');
 	console.log('**Login**', token);
 	res.send(token);
 };
+
 
 export default Login;

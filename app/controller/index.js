@@ -7,13 +7,15 @@ import FileUpload from './fileUpload';
 
 import User from '../models/userModel'
 import Shopify from './shopify';
+import axios from 'axios';
 
 let router = express.Router();
  const upload = multer();
 
 router.get('/test', (req,res)=>{
-	res.send('test data for server ** ');
+	console.log('test path return data');
 });
+
 
 router.post('/fileUpload', upload.single('file'), FileUpload);
 router.post('/login', Login);
