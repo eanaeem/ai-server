@@ -34,8 +34,8 @@ app.get('/test', (req,res)=>{
 });
 
 
-// let { db, port, remoteDb } = Config;
-// port = process.env.PORT || port;
+let { db, port, remoteDb } = Config;
+port = process.env.PORT || port;
 
 // mongoose.connect(remoteDb, { useMongoClient: true }, (err) => {
 // 	if (err) console.log('*** Error connecting to db****');
