@@ -13,7 +13,7 @@ import Config from './config/index';
 const app = express();
 // app.use(session({secret:'shah'}));
 // app.use(passport.initialize());
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cors({
 // 	origin: "http://localhost:3005",
