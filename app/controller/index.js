@@ -13,7 +13,8 @@ let router = express.Router();
  const upload = multer();
 
 router.get('/test', (req,res)=>{
-	console.log('test path return data');
+	console.log('test request');
+	res.send('test path return data');
 });
 
 
