@@ -9,7 +9,7 @@ const Login = (req, res) => {
 		console.log('inside login funct***', user);
 		const [{ username, _id }] = user;
 		if (user[0].password === password) {
-			const payload = { id: _id };
+			const payload = { id: _id, username };
 			const token = jwt.sign(payload, jwtOptions.secretOrKey);
 			res.json({ message: "ok", token: token });
 		} else {
