@@ -23,8 +23,9 @@ app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
 app.use(logger());
+
 // app.use((req, res, next)=>{
-// 	console.log(req);
+// 	debugger;
 // 	next();
 // });
 
