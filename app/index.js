@@ -9,26 +9,24 @@ import morgan from 'morgan';
 import routes from './controller';
 import Config from './config/index';
 
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+import passportJWT from 'passport-jwt';
+import strategy from './lib/jwtStrategy';
+import Login from './controller/login';
+
+passport.use(strategy);
 
 const app = express();
-// app.use(session({secret:'shah'}));
-// app.use(passport.initialize());
-app.use(morgan('combined'));
+app.use(passport.initialize());
+
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors({
-// 	origin: "http://localhost:3005",
-// 	// Credentials: true,
-// 	// optionsSuccessStatus: 200
-
-// }));
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.use(morgan('combined'));
 app.use(logger());
-
-
+// app.use((req, res, next)=>{
+// 	console.log(req);
+// 	next();
+// });
 
 let { db, port, remoteDb } = Config;
 port = process.env.PORT || port;
@@ -40,6 +38,17 @@ mongoose.connect(remoteDb, { useMongoClient: true }, (err) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', routes);
+app.post('/login',  Login);
+app.use('/api', passport.authenticate('jwt', { session: false }), routes);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
+
+
+
+
+// app.use(cors({
+	// 	origin: "http://localhost:3004",
+	// Credentials: true,
+	// optionsSuccessStatus: 200
+	
+	// }));
