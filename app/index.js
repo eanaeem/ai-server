@@ -32,7 +32,7 @@ app.use(logger());
 let { db, port, remoteDb } = Config;
 port = process.env.PORT || port;
 
-mongoose.connect(remoteDb, { useMongoClient: true }, (err) => {
+mongoose.connect(remoteDb,  (err) => {
 	if (err) console.log('*** Error connecting to db****');
 	else console.log('****connected to db****');
 });

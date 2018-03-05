@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./app/index.js --exec babel-node"
+    "start": "nodemon ./app/index.js --exec babel-node",
+    "deploy": "node index.js",
+    "copy": "copyfiles public/*  package.json .npmrc .dockerignore Dockerfile dist ",
+    "prod": "rimraf dist && babel app -d dist"
   },
   "dependencies": {
     "axios": "^0.17.1",
